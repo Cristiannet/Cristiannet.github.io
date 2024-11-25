@@ -1,0 +1,71 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #131c96;
+    color: #fff;
+    padding: 1rem;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 1rem;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+main {
+    padding: 1rem;
+}
+
+footer {
+    background-color: #160952;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
+      
+
+.servicios {
+    display: flex;
+    flex-direction: column;
+}
+
+.servicio {
+    margin-bottom: 2rem;
+}
+
+.servicio h3 {
+    margin-top: 0;
+}
+
+.servicio ul {
+    list-style-type: disc;
+    margin-left: 2rem;
+}
+.primero{
+    text-align: center;
+}
+
+.historia{
+    text-align: center;
+}
+
