@@ -10,9 +10,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $headers = "From: $email";
 
     if (mail($to, $subject, $message, $headers)) {
-        echo "¡Mensaje enviado con éxito!";
-    } else {
-        echo "Hubo un problema al enviar el mensaje.";
-    }
+    // Redirección al index.html si el correo se envía con éxito
+    header("Location: index.html");
+    exit(); // Detener la ejecución del script después de redirigir
+} else {
+    echo "Hubo un problema al enviar el mensaje.";
 }
+
 ?>
