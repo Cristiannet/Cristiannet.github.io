@@ -1,24 +1,23 @@
 <?php
+    // PHP para manejar el formulario
+    $mensaje = ""; // Mensaje para mostrar al usuario
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Sanitizar entradas del formulario
+        $name = htmlspecialchars($_POST['name']);
+        $phone = htmlspecialchars($_POST['phone']);
+        $email = htmlspecialchars($_POST['email']);
 
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+        // Configuración del correo
+        $to = "correodepruebas@gmail.com";
+        $subject = "Nuevo mensaje de contacto";
+        $body = "Nombre: $name\nCelular: $phone\nCorreo Electrónico: $email";
+        $headers = "From: $email";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = htmlspecialchars($_POST['name']);
-    $phone = htmlspecialchars($_POST['phone']);
-    $email = htmlspecialchars($_POST['email']);
-
-    $to = "correodepruebas@gmail.com";
-    $subject = "Nuevo mensaje de contacto";
-    $message = "Nombre: $name\nCelular: $phone\nCorreo Electrónico: $email";
-    $headers = "From: $email";
-
-    action="index.html"
-
-    if (mail($to, $subject, $message, $headers)) {
-        echo "¡Mensaje enviado con éxito!";
-    } else {
-        echo "Hubo un problema al enviar el mensaje.";
+        // Enviar el correo y mostrar mensaje
+        if (mail($to, $subject, $body, $headers)) {
+            $mensaje = "¡Mensaje enviado con éxito!";
+        } else {
+            $mensaje = "Hubo un problema al enviar el mensaje. Inténtalo nuevamente.";
+        }
     }
-}
-?>
+    ?>
