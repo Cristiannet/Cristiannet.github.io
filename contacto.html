@@ -29,28 +29,56 @@
                         <p>¡LLÁMANOS AHORA!</p>
                     </div>
                 </div>
-                <div class="formulario-contacto">
-                    <h2>Contáctanos</h2>
-                    <?php if ($mensaje): ?>
-                        <p style="color: green; font-weight: bold;"><?php echo $mensaje; ?></p>
-                    <?php else: ?>
-                        <p>Si tienes dudas o deseas más información, completa el siguiente formulario:</p>
-                    <?php endif; ?>
-                    <form action="formulario.php" method="POST" class 'speaker-form'>
-                        <label for="name">Nombre</label>
-                        <input type="text" id="name" name="name" placeholder="Escribe tu nombre" required>
-                        
-                        <label for="phone">Celular</label>
-                        <input type="tel" id="phone" name="phone" placeholder="Escribe tu número de celular" required>
-                        
-                        <label for="email">Correo Electrónico</label>
-                        <input type="email" id="email" name="email" placeholder="Escribe tu correo electrónico" required>
-                        
-                        <button type="submit">Enviar</button>
-                    </form>
-                </div>
-                <div class="secciones"></div>        
-            </div>
+                <?php
+    $successMessage = "";
+    $errorMessage = "";
+
+    // Procesar el formulario cuando se envíe
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $name = htmlspecialchars($_POST['name']);
+        $email = htmlspecialchars($_POST['email']);
+        $message = htmlspecialchars($_POST['message']);
+
+        if (!empty($name) && !empty($email) && !empty($message)) {
+            if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $to = "correodepruebas@gmail.com"; // Cambia por tu correo real
+                $subject = "Nuevo mensaje de contacto";
+                $body = "Nombre: $name\nCorreo: $email\nMensaje: $message";
+                $headers = "From: $email";
+
+                if (mail($to, $subject, $body, $headers)) {
+                    $successMessage = "¡Mensaje enviado con éxito!";
+                } else {
+                    $errorMessage = "Error al enviar el mensaje. Inténtalo más tarde.";
+                }
+            } else {
+                $errorMessage = "Por favor, ingresa un correo válido.";
+            }
+        } else {
+            $errorMessage = "Por favor, completa todos los campos.";
+        }
+    }
+    ?>
+    <!-- Mostrar mensajes -->
+    <?php if ($successMessage): ?>
+        <div class="message success"><?php echo $successMessage; ?></div>
+    <?php elseif ($errorMessage): ?>
+        <div class="message error"><?php echo $errorMessage; ?></div>
+    <?php endif; ?>
+
+    <form action="" method="POST">
+        <h2>Formulario de Contacto</h2>
+        <label for="name">Nombre</label>
+        <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+
+        <label for="email">Correo Electrónico</label>
+        <input type="email" id="email" name="email" placeholder="Tu correo electrónico" required>
+
+        <label for="message">Mensaje</label>
+        <textarea id="message" name="message" rows="5" placeholder="Tu mensaje" required></textarea>
+
+        <button type="submit">Enviar</button>
+    </form>
             <div class="menu-secundario">
                 <a href="">Celular: +57 3165889726</a> 
                 <a href="">Correo: Markode@gmail.com</a>
