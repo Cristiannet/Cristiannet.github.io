@@ -6,7 +6,6 @@
     <title>Markcode - Página de Inicio</title>
     <link rel="stylesheet" href="Css/styles2.css">
 </head>
-    action="index.html"
 <body>
     <header>
         <h1>Bienvenido a Markcode</h1>
@@ -20,8 +19,7 @@
         </nav>
     </header>
     <main>
-        <div class="primero">
-        </div>
+        <div class="primero"></div>
         <div class="contenido">        
             <div class="articulos">
                 <div class="secciones">
@@ -33,8 +31,13 @@
                 </div>
                 <div class="formulario-contacto">
                     <h2>Contáctanos</h2>
-                    <p>Si tienes dudas o deseas más información, completa el siguiente formulario:</p>
-                    <form action="contacto.html" method="POST">
+                    <!-- Mostrar mensaje después del envío -->
+                    <?php if ($mensaje): ?>
+                        <p style="color: green; font-weight: bold;"><?php echo $mensaje; ?></p>
+                    <?php else: ?>
+                        <p>Si tienes dudas o deseas más información, completa el siguiente formulario:</p>
+                    <?php endif; ?>
+                    <form action="" method="POST">
                         <label for="name">Nombre</label>
                         <input type="text" id="name" name="name" placeholder="Escribe tu nombre" required>
                         
@@ -47,8 +50,7 @@
                         <button type="submit">Enviar</button>
                     </form>
                 </div>
-                <div class="secciones">
-                </div>        
+                <div class="secciones"></div>        
             </div>
             <div class="menu-secundario">
                 <a href="">Celular: +57 3165889726</a> 
