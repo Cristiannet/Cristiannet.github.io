@@ -13,6 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message = "Nombre: $name\nCelular: $phone\nCorreo Electrónico: $email";
     $headers = "From: $email";
 
+    action="index.html"
+
     if (mail($to, $subject, $message, $headers)) {
         echo "¡Mensaje enviado con éxito!";
     } else {
